@@ -1,0 +1,41 @@
+{% extends "Users/base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center">Register</h2>
+        <form method="POST" enctype="multipart/form-data" class="p-2 border">
+            {% csrf_token %}
+            
+            <!-- Loop through form fields to add Bootstrap classes -->
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                <div>{{ form.username }}</div>
+                <small class="text-danger">{{ form.username.errors }}</small>
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                <div>{{ form.email }}</div>
+                <small class="text-danger">{{ form.email.errors }}</small>
+            </div>
+
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                <div>{{ form.password1 }}</div>
+                <small class="text-danger">{{ form.password1.errors }}</small>
+            </div>
+
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                <div>{{ form.password2 }}</div>
+                <small class="text-danger">{{ form.password2.errors }}</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

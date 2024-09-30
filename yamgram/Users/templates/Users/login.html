@@ -1,0 +1,27 @@
+{% extends "Users/base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center">Login</h2>
+        <form method="POST" enctype="multipart/form-data" class="p-2 border">
+            {% csrf_token %}
+            
+            <!-- Loop through form fields to add Bootstrap classes -->
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                <div>{{ form.username }}</div>
+                <small class="text-danger">{{ form.username.errors }}</small>
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                <div>{{ form.password }}</div>
+                <small class="text-danger">{{ form.password.errors }}</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
