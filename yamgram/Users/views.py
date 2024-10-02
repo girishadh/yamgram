@@ -17,15 +17,17 @@ def register(request):
         form = UserRegisterForm
     return render(request, 'users/register.html', {'form':form})
 
-@login_required
 def profile(request):
 
-    username = request.user.username
-    email = request.user.email
+    if request.user.is_authenticated:
+        username = request.user.username
+        email = request.user.email
 
-    context = {
-        'username' : username,
-        'email' : email
-    }
+        context = {
+            'username' : username,
+            'email' : email
+        }
 
-    return render(request, 'Users/profile.html', context)
+        return render(request, 'Users/profile.html', context)
+    else:
+        return redirect('login')
