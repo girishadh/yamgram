@@ -4,13 +4,18 @@
 
 {% for post in posts %}
 
-<h1>{{ post.title }}</h1>
-<h2>{{ post.content }}</h2>
-<p>{{ post.author }}</p>
-<p>{{ post.datePosted }}</p>
+<div class="border border-info p-4 mt-4">
+    <h1 class="display-4 text-success text-center">{{ post.title }}</h1>
+    <p class="lead">{{ post.content }}</p>
+    <div class= " border-top border-indo">
+        <p>{{ post.author }}</p>
+        <p>{{ post.datePosted }}</p>
+    </div>
 
-<a class="btn btn-primary" href="{% url 'like' post.id %}">{{ post.likes.count }} Likes</a>
-<a href="{% url 'dislike' post.id %}" class="btn btn-danger">{{ post.dislikes.count }} Dislikes</a>
+
+    <a class="btn btn-info" href="{% url 'like' post.id %}">{{ post.likes.count }} Likes</a>
+    <a href="{% url 'dislike' post.id %}" class="btn btn-danger">{{ post.dislikes.count }} Dislikes</a>
+</div>
 
 {% endfor %}
 
