@@ -7,6 +7,8 @@ def index(request):
     return render(request, 'posts/index.html', {'posts':posts})
 
 def postCreate(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -17,3 +19,19 @@ def postCreate(request):
     else:
         form = PostForm
     return render(request, 'posts/postCreate.html', {'form':form})
+
+def like(request, post_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    post = Post.objects.get(id=post_id)
+    post.likes.add(request.user)
+    post.dislikes.remove(request.user)
+    return redirect('index')
+
+def dislike(request, post_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    post = Post.objects.get(id=post_id)
+    post.dislikes.add(request.user)
+    post.likes.remove(request.user)
+    return redirect('index')

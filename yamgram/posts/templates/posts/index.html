@@ -9,6 +9,9 @@
 <p>{{ post.author }}</p>
 <p>{{ post.datePosted }}</p>
 
+<a class="btn btn-primary" href="{% url 'like' post.id %}">{{ post.likes.count }} Likes</a>
+<a href="{% url 'dislike' post.id %}" class="btn btn-danger">{{ post.dislikes.count }} Dislikes</a>
+
 {% endfor %}
 
 {% endblock content %}
