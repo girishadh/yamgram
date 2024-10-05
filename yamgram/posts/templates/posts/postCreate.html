@@ -2,18 +2,14 @@
 
 {% block content %}
 
+<h4>Add a post</h4>
+<form  method="POST">
+    {% csrf_token %}
+    <h1 class="display-4">Title</h1>
+    {{ form.title }}
+    <p class="lead">Content</p>
+    {{ form.content }}
+    <button class="btn btn-info" type="submit">Add Post</button>
+</form>
 
-
-    <form action="" method="POST">
-
-        {% csrf_token %}
-
-        <h1>{{ form.title.label }}: {{ form.title }}</h1>
-
-        <h1>{{ form.content.label }}:</h1>
-        <h2> {{ form.content }}</h2>
-
-        <button type="submit">Create</button>
-    
-    </form>
 {% endblock content %}

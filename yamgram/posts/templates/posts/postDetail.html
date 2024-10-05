@@ -2,8 +2,6 @@
 
 {% block content %}
 
-{% for post in posts %}
-
 <div class="border border-info p-4 mt-4">
     <h1 class="display-4 text-success text-center">{{ post.title }}</h1>
     <p class="lead">{{ post.content }}</p>
@@ -15,11 +13,22 @@
 
     <a class="btn btn-info" href="{% url 'like' post.id %}">{{ post.likes.count }} Likes</a>
     <a href="{% url 'dislike' post.id %}" class="btn btn-danger">{{ post.dislikes.count }} Dislikes</a>
-
-    <a class="btn btn-info" href="{% url 'postDetail' post.id %}">Comments</a>
+    <div class="">
+        <h3 class="display-5 text-success text-center">Comments</h1>
+        <h4>Add a comment:</h4>
+        <form  method="POST">
+            {% csrf_token %}
+            {{ form.content }}
+            <button class="btn btn-info" type="submit">Add Comment</button>
+        </form>
+        {% for comment in comments %}
+            <div class="border border-info p-4 mt-4">
+                <p class="lead">{{ comment.user }}</p>
+                <p class="">{{ comment.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
 
 </div>
-
-{% endfor %}
 
 {% endblock content %}
